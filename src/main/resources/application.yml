@@ -1,0 +1,23 @@
+server:
+  port: 8080
+
+#WARNING: Because of multiple Entity Managers, Hikari Configuration will be ignored by the system, therefore it should be moved to the code level.
+spring:
+  datasource:
+    url: jdbc:postgresql://${DATABASE_HOST:localhost}:${DATABASE_PORT:5435}/${DATABASE_NAME:template}
+    username: ${DATABASE_USER:templateUser}
+    password: ${DATABASE_PASSWORD:templatePassword}
+
+    read:
+      url: jdbc:postgresql://${DATABASE_HOST:localhost}:${DATABASE_PORT:5435}/${DATABASE_NAME:template}
+      username: ${DATABASE_USER:templateUser}
+      password: ${DATABASE_PASSWORD:templatePassword}
+
+    jpa:
+      hibernate:
+        ddl-auto: validate
+      database: postgresql
+      database-platform: org.hibernate.dialect.PostgreSQLDialect
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    open-in-view: false #This property is recommended to configure as false, as multiple entity managers are not serving the lazy load out of the box, and they require EntityGraph annotations

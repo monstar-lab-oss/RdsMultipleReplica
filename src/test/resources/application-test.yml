@@ -1,0 +1,15 @@
+#Test/Containers will take care of DB and User creation based on the given configuration.
+spring:
+  datasource:
+    url: jdbc:tc:postgresql:14:///template
+    username: primary_user
+    password: primary_user_password
+    hikari:
+      read-only: true
+
+    read:
+      url: jdbc:tc:postgresql:14:///template
+      username: read_user
+      password: read_user_password
+      hikari:
+        read-only: true
